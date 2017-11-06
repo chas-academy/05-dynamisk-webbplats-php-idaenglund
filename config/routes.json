@@ -1,0 +1,36 @@
+{
+
+	"start": {
+		"controller": "Default",
+		"method": "start"
+	},
+
+	"posts/:page": {
+		"controller": "Post",
+		"method": "getAllWithPage",
+		"params": {
+			"page": "number"
+		}
+    },
+    "posts": {
+    	"controller": "Post",
+    	"method": "getAll"
+    },
+    "post/:id": {
+    	"controller": "Post",
+    	"method": "get",
+    	"params": {
+    		"id": "int"
+    	}
+    },
+    "posts/search": {
+    	"controller": "Post",
+    	"method": "search"
+    },
+
+    "login": {
+    	"controller": "User",
+    	"method": "login"
+}
+}
+

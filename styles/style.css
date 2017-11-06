@@ -1,0 +1,185 @@
+* {
+    margin: 0; 
+    padding: 0; 
+}
+
+h1 {
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 3px; 
+    text-align: center; 
+    padding-top: 40px; 
+}
+
+h2 {
+    font-family: 'Raleway', sans-serif;
+    text-align: center; 
+    letter-spacing: 2px; 
+    margin: 1.5em; 
+}
+
+.navbar-header {
+width: 80%; 
+position: fixed; 
+}
+
+.lion { 
+    position: relative;
+    width: 100%; 
+    text-align: center; 
+    z-index: -1; 
+    
+ 
+}
+
+.hide {
+    display: none; 
+}
+
+
+.quote {
+    color: #F1AF77;
+    position: absolute; 
+    margin: 3em; 
+    font-size: 2em; 
+    font-family: Arial, Helvetica, sans-serif; 
+}
+
+
+input {
+    border-radius: 5px;  
+    margin-left: 20px; 
+}
+
+.password {
+    margin-left: 2%; 
+}
+
+.button {
+    float: left;
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    color: white;
+}
+
+body {
+    background-color: floralwhite;
+}
+
+.form {
+    font-family: 'Lato', sans-serif;
+    float: right; 
+    margin: 20px; 
+}
+
+.inlog {
+    position: relative; 
+    justify-content: left;
+    font-size: 1em;
+    margin-right: 8px; 
+}
+
+
+#primary_nav_wrap
+{
+	margin-top:15px
+}
+
+#primary_nav_wrap ul
+{
+	list-style:none;
+	position:relative;
+	float:left;
+	margin:0;
+	padding:0
+}
+
+#primary_nav_wrap ul a
+{
+	display:block;
+	color:#333;
+	text-decoration:none;
+	font-weight:700;
+	padding:0 15px;
+	font-family: 'Lato', sans-serif;
+}
+
+#primary_nav_wrap ul li
+{
+	position:relative;
+	float:left;
+	margin:0;
+	padding:0
+}
+
+#primary_nav_wrap ul li.current-menu-item
+{
+	background:#F8EBEB
+}
+
+#primary_nav_wrap ul li.current-menu-item1 {
+    float: right;
+}
+
+#primary_nav_wrap ul li:hover
+{
+	background:#F8EBEB;
+}
+
+#primary_nav_wrap ul ul
+{
+	display:none;
+	position:absolute;
+	top:100%;
+	left:0;
+	padding:0
+}
+
+#primary_nav_wrap ul ul li
+{
+	float:none;
+	width:200px
+}
+
+#primary_nav_wrap ul ul a
+{
+	line-height:120%;
+	padding:10px 15px
+}
+
+#primary_nav_wrap ul ul ul
+{
+	top:0;
+	left:100%
+}
+
+#primary_nav_wrap ul li:hover > ul
+{
+	display:block
+}
+
+.post { 
+    padding-left: 60px;
+    padding-right: 60px; 
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 0.1em; 
+}
+
+@media only screen and (max-width: 414px) {
+
+.quote {
+    font-size: 60%; 
+}
+
+.hide {
+    display: -webkit-box; 
+   
+}
+
+form {
+    float: left; 
+}
+}

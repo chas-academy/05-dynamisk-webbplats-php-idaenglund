@@ -1,0 +1,7 @@
+{
+    "db": {
+        "dsn": "mysql:host=127.0.0.1;dbname=dynamisk_webbplats",
+        "user": "root",
+        "password": "root"
+    }
+}
