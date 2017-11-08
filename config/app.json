@@ -1,6 +1,6 @@
 {
     "db": {
-        "dsn": "mysql:host=127.0.0.1;dbname=dynamisk_webbplats",
+        "dsn": "mysql:host=127.0.0.1;dbname=blogg",
         "user": "root",
         "password": "root"
     }

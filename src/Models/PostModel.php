@@ -30,6 +30,7 @@ class PostModel extends AbstractModel
         $start = $pageLength * ($page - 1);
 
         $query = 'SELECT * FROM posts LIMIT :page, :length';
+
         $sth = $this->db->prepare($query);
         $sth->bindParam('page', $start, PDO::PARAM_INT);
         $sth->bindParam('length', $pageLength, PDO::PARAM_INT);
@@ -38,11 +39,11 @@ class PostModel extends AbstractModel
         return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
     }
 
-    public function search(string $title, string $content): array
+    public function search(string $title): array
     {
         $query = <<<SQL
-SELECT * FROM posts
-WHERE title LIKE :title AND content LIKE :content
+        SELECT * FROM posts
+        WHERE title LIKE :searchstring OR content LIKE :searchstring 
 SQL;
         $sth = $this->db->prepare($query);
         $sth->bindValue('title', "%$title%");

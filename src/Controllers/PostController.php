@@ -4,6 +4,7 @@ namespace Blogg\Controllers;
 
 use Blogg\Exceptions\DbException;
 use Blogg\Exceptions\NotFoundException;
+use Blogg\Models\PostModel;
 
 class PostController extends AbstractController
 {
@@ -15,7 +16,7 @@ class PostController extends AbstractController
         $postModel = new PostModel();
 
         $posts = $postModel->getAll($page, self::PAGE_LENGTH);
-
+        
         $properties = [
             'posts' => $posts,
             'currentPage' => $page,
@@ -60,3 +61,4 @@ class PostController extends AbstractController
         return $this->render('views/posts.php', $properties);
     }
 
+}

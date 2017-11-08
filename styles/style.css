@@ -18,17 +18,15 @@ h2 {
 }
 
 .navbar-header {
-width: 80%; 
-position: fixed; 
+    width: 80%;
+    position: fixed;
 }
 
 .lion { 
     position: relative;
     width: 100%; 
     text-align: center; 
-    z-index: -1; 
-    
- 
+    z-index: -1;
 }
 
 .hide {

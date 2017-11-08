@@ -38,13 +38,13 @@
     echo $db->lastInsertId(); 
 */
 
-
     $router = new Router();
-   echo "<pre>";
+
+   /*echo "<pre>";
         print_r($router);
-    echo "</pre>";
+    echo "</pre>";*/
 
+    $response = $router->route(new Request());
+
+    echo $response;
     
-    /*$response = $router->route(new Request());
-    echo $response;*/
-

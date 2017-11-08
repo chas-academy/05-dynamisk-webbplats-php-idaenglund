@@ -55,7 +55,7 @@
         ): string {
             $controllerName = '\Blogg\Controllers\\' . $info['controller'] . 'Controller';
             // Blogg\Controllers\PostController
-            $controller = new $controllerName($this->di, $request);
+            $controller = new $controllerName($request);
 
             $params = $this->extractParams($route, $path);
             return call_user_func_array([$controller, $info['method']], $params);

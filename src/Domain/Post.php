@@ -4,15 +4,19 @@ namespace Blogg\Domain;
 
 class Post 
 {
+    private $id;
     private $title;
+    private $postdate;
     private $content;
 
-    public function __construct (
-        string $title,
-        string $content
-    ) {
-    $this->title = $title;
-    $this->content = $content; 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getPostDate(): datetime
+    {
+        return $this->datetime;
     }
 
     public function getTitle(): string  
@@ -25,14 +29,4 @@ class Post
         return $this->content;
     }
 
-    public function getPrintableTitle(): string
-    {
-        $result = $this->title . '-' . $this->content; 
-        
-        return $result; 
-    }
-    
-    }
-
-
-?>
+}

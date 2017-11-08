@@ -1,6 +1,6 @@
 <?php
 
-namespace Bookstore\Controllers;
+namespace Blogg\Controllers;
 
 use Blogg\Core\Request;
 
