@@ -1,4 +1,4 @@
-<?php include('./templates/header.html'); ?>
+<?php include('./templates/header.php'); ?>
 
     <section>
         <h2 class="h2">Blog Post</h2>
@@ -12,7 +12,7 @@
             carrot watercress. Corn amaranth salsify bunya nuts nori azuki bean chickweed potato bell pepper artichoke.</p>
     </section>
 
-<?php include('./templates/footer.html'); ?>
+<?php include('./templates/footer.php'); ?>
 
 </body>
 </html>

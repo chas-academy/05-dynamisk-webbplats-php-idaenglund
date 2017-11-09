@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="http://localhost:8080/styles/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <title><?php echo $this->title ?></title>
+    <title>My blog</title>
 </head>
 
 <body>
@@ -39,19 +39,19 @@
         </nav>
         <?php if(! isset($_COOKIE['username'])) : ?>
 
-            <form class="form" method="POST" action="login">
+            <form class="form" method="POST" action="/login">
                 <div class="inlog">Username
-                    <input type="text" name="username">
+                    <input type="text" class="username" name="username">
                     <span class="hide"><br></span>
                     <span class="password">Password</span>
-                    <input type="password" name="password">
+                    <input type="password" class="password1" name="password">
                     <button type="submit">Sign in</button>
                 </div>
             </form>
 
         <?php else: ?>
 
-            <form class="form" method="POST" action="logout">
+            <form class="form" method="POST" action="/logout">
                 <button type="submit">Log out</button>
             </form>
 

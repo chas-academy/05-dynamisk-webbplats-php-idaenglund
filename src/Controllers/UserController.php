@@ -31,20 +31,19 @@ class UserController extends AbstractController
         
             $statement->execute();
             $result = $statement->fetchAll();
-        
-            if (! empty($result)) {
+
+            if (!empty($result)) {
                 $properties = [
                     'username' => $result[0]['username']
                 ];
 
                 setcookie('username', $properties['username']);
-    
-                return $this->render('views/login.php', $properties);
+                return $this->render('views/writepost.php', $properties);
             }
         }
 
-
         return $this->render('views/layout.php', []);
+        
         
     }
 

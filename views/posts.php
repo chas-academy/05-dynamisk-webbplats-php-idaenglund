@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="http://localhost:8080/styles/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <title><?php echo 'Title goes here' ?></title>
+    <title> My blog </title>
 </head>
 
 <body>

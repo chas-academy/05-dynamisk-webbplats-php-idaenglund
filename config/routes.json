@@ -20,12 +20,8 @@
     	"method": "get",
     	"params": {
     		"id": "number"
-    	}
-    },
-    "posts/search": {
-    	"controller": "Post",
-    	"method": "search"
-    },
+		}
+	},
 
     "login": {
     	"controller": "User",
