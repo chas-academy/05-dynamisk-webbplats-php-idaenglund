@@ -24,4 +24,9 @@ abstract class AbstractController
 
         return $renderedView;
     }
+
+    protected function redirect(string $url)
+    {
+        header('Location: ' . $url); 
+    }
 }

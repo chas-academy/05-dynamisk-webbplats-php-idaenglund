@@ -1,7 +1,7 @@
 {
 	"": {
-		"controller": "Default",
-		"method": "start"
+		"controller": "Post",
+		"method": "getAll"
 	},
 
 	"posts/:page": {
@@ -10,11 +10,14 @@
 		"params": {
 			"page": "number"
 		}
-    },
+	},
+	
     "posts": {
     	"controller": "Post",
     	"method": "getAll"
-    },
+	},
+	
+
     "post/:id": {
     	"controller": "Post",
     	"method": "get",
@@ -22,6 +25,11 @@
     		"id": "number"
 		}
 	},
+
+	"post": {
+		"controller": "Post", 
+		"method": "get" 
+},
 
     "login": {
     	"controller": "User",
@@ -31,6 +39,16 @@
 	"logout": {
     	"controller": "User",
     	"method": "logout"
+	},
+
+	"posttext": {
+		"controller": "Post",
+		"method": "createPost"
+	},
+
+	"writepost": {
+		"controller": "Post",
+		"method": "writePost"
 	}
 }
 

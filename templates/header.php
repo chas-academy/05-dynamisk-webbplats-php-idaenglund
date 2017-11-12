@@ -39,7 +39,7 @@
         </nav>
         <?php if(! isset($_COOKIE['username'])) : ?>
 
-            <form class="form" method="POST" action="/login">
+            <form class="form" method="POST" action="login">
                 <div class="inlog">Username
                     <input type="text" class="username" name="username">
                     <span class="hide"><br></span>

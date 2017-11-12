@@ -38,6 +38,7 @@ class UserController extends AbstractController
                 ];
 
                 setcookie('username', $properties['username']);
+
                 return $this->render('views/writepost.php', $properties);
             }
         }

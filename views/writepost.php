@@ -31,7 +31,7 @@
                 <input type="text" name="title" style="width:700px;height:30px;"><br>
                 <span class="text">Blogtext</span>
                 <textarea class="textarea" name="content" style="width:700px;height:400px;"></textarea>
-                <button type="submit" class="pure-button" style="width:100px;height;100px;">Post</button>
+                <button type="submit" style="width:100px;height;100px;">Post</button>
             </div>
         </form>
 </div>    

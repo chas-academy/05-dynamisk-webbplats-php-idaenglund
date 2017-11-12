@@ -52,4 +52,16 @@ SQL;
 
         return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
     }
+
+    public function create(string $title, string $content) {
+        $sql = 'INSERT INTO posts (title, postdate, content) VALUES (:title, NOW(), :content)';
+
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindValue(':title', $title);
+        $statement->bindValue(':content', $content); 
+
+        $statement->execute();
+
+    }
 }

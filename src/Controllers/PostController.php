@@ -45,20 +45,18 @@ class PostController extends AbstractController
         return $this->render('views/post.php', $properties);
     }
 
-    public function search(): string
-    {
-        $title = $this->request->getParams()->getString('title');
-        $tags = $this->request->getParams()->getString('tags');
+    public function createPost() {
+        $title = $_POST['title'];
+        $content = $_POST['content'];
 
         $postModel = new PostModel();
-        $posts = $postModel->search($title, $content);
 
-        $properties = [
-            'posts' => $posts,
-            'currentPage' => 1,
-            'lastPage' => true
-        ];
-        return $this->render('views/posts.php', $properties);
+        $post = $postModel->create($title, $content);
+
+        return $this->redirect('/');
     }
 
+    public function writePost() {
+        return $this->render('views/writepost.php', []);
+    }
 }

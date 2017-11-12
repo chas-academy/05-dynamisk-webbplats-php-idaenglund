@@ -37,7 +37,7 @@
                     </ul>
                     <ul>
         </nav>
-        <form class="form" method="POST" action="login.php">
+        <form class="form" method="POST" action="/login">
             <div class="inlog">Username
                 <input type="text" name="username">
                 <span class="hide"><br></span>
