@@ -154,6 +154,15 @@ h2 {
     text-shadow:none;
 }
 
+.logout {
+    background: #B9DFFF;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+}
+
 
 .bottom-left {
     position: absolute;
@@ -209,6 +218,11 @@ body {
 	font-weight:700;
 	padding:0 15px;
 	font-family: 'Lato', sans-serif;
+}
+#primary_nav_wrap ul li a:after,
+#primary_nav_wrap ul li a:before {
+    content: '|';
+    padding: 8px 10px;
 }
 
 #primary_nav_wrap ul li

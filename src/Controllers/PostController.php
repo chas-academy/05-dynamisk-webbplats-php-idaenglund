@@ -5,6 +5,7 @@ namespace Blogg\Controllers;
 use Blogg\Exceptions\DbException;
 use Blogg\Exceptions\NotFoundException;
 use Blogg\Models\PostModel;
+use Blogg\Models\UserModel;
 
 class PostController extends AbstractController
 {
@@ -46,25 +47,56 @@ class PostController extends AbstractController
     }
 
     public function createPost() {
-        $title = $_POST['title'];
-        $content = $_POST['content'];
-
+        $userModel = new UserModel();
         $postModel = new PostModel();
+        $user = $userModel->readUser($this->userId);
+        $posts = $postModel->getAll();
 
-        $post = $postModel->create($title, $content);
+        $properties = [
+            'user' => $user,
+            'posts' => $posts
+        ];
 
-        return $this->redirect('/login');
+        return $this->render('views/createpost.php', $properties);
     }
 
- 
+    public function updatePost(int $postId)
+    {
+        $title = $this->request->getParams()->get('title');
+        $content = $this->request->getParams()->get('content');
 
-    public function deletePost() {
+        $postModel = new PostModel();
+   
+        $isUpdated = $postModel->update($postId, $title, $content);
+
+        if ($isUpdated) {
+            return $this->redirect('/');
+        } else {
+            throw new \Exception('AAAAAAAAAH!');
+        }
+       
+   }
+
+    public function deletePost(int $postId) {
         $postId = $_POST['postId'];
 
         $postModel = new PostModel();
 
         $postModel->delete($postId);
             
-        return $this->redirect('/login');
+        return $this->redirect('/');
+    }
+
+    public function editPost(int $postId): string
+     {
+        $postModel = new PostModel(); 
+        
+        $post = $postModel->edit($postId);
+
+        $properties = [
+            'post' => $post
+        ];
+
+        return $this->render('views/edittext.php', $properties);
     }
 }

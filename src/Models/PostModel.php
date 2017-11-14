@@ -18,6 +18,7 @@ class PostModel extends AbstractModel
         $sth->execute(['id' => $postId]);
 
         $posts = $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
+        
         if (empty($posts)) {
             throw new NotFoundException();
         }
@@ -49,7 +50,8 @@ SQL;
         return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
     }
 
-    public function create(string $title, string $content) {
+    public function create(string $title, string $content) 
+    {
         $sql = 'INSERT INTO posts (title, postdate, content) VALUES (:title, NOW(), :content)';
 
         $statement = $this->db->prepare($sql);
@@ -61,11 +63,35 @@ SQL;
 
     }
 
-    public function delete(int $postId) {
+    public function delete(int $postId) 
+    {
         $sql ='DELETE FROM posts WHERE id = :id';
         $sth = $this->db->prepare($sql);
         
         
         return $sth->execute(['id' => $postId]);
+    }
+
+    public function edit(int $postId) 
+    {
+        $sql = 'SELECT * FROM posts WHERE id = :id'; 
+        
+        $sth = $this->db->prepare($sql);
+        $sth->execute(['id' => $postId]);
+
+        return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME)[0];
+    }
+
+    public function update(int $postId, string $title, string $content) 
+    {
+        $sql = 'UPDATE posts SET title = :title, content = :content, postdate = NOW() WHERE id = :id'; 
+        
+        $sth = $this->db->prepare($sql);
+
+        $sth->bindValue(':title', $title);
+        $sth->bindValue(':content', $content);
+        $sth->bindValue(':id', $postId);
+
+        return $sth->execute();
     }
 }

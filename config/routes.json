@@ -1,63 +1,66 @@
 {
-	"": {
-		"controller": "Post",
-		"method": "getAll"
-	},
+  "": {
+    "controller": "Post",
+    "method": "getAll"
+  },
 
-	"posts/:page": {
-		"controller": "Post",
-		"method": "getAllWithPage",
-		"params": {
-			"page": "number"
-		}
-	},
-	
-    "posts": {
-    	"controller": "Post",
-    	"method": "getAll"
-	},
-	
+  "posts/:page": {
+    "controller": "Post",
+    "method": "getAllWithPage",
+    "params": {
+      "page": "number"
+    }
+  },
 
-    "post/:id": {
-    	"controller": "Post",
-    	"method": "get",
-    	"params": {
-    		"id": "number"
-		}
-	},
+  "login": {
+    "controller": "User",
+    "method": "login"
+  },
 
-	"post": {
-		"controller": "Post", 
-		"method": "get" 
-},
+  "logout": {
+    "controller": "User",
+    "method": "logout",
+    "login": true
+  },
 
-    "login": {
-    	"controller": "User",
-    	"method": "login"
-	},
-	
-	"logout": {
-    	"controller": "User",
-		"method": "logout",
-		"login": true
-	},
+  "post/create": {
+    "controller": "Post",
+    "method": "createPost",
+    "login": true
+  },
 
-	"posttext": {
-		"controller": "Post",
-		"method": "createPost",
-		"login": true
-	},
+  "post/:id": {
+    "controller": "Post",
+    "method": "readPost",
+    "params": {
+      "id": "number"
+    }
+  },
 
-	"deletePost": {
-		"controller": "Post",
-		"method": "deletePost",
-		"login": true
-	},
+  "post/:id/edit": {
+    "controller": "Post",
+    "method": "editPost",
+    "login": true,
+    "params": {
+      "id": "number"
+    }
+  },
 
-	"editText": {
-		"controller": "Post",
-		"method": "editText",
-		"login": true
-	}
+  "post/:id/update": {
+    "controller": "Post",
+    "method": "updatePost",
+    "login": true,
+    "params": {
+      "id": "number"
+    }
+  },
+
+  "post/:id/delete": {
+    "controller": "Post",
+    "method": "deletePost",
+    "login": true,
+    "params": {
+      "id": "number"
+    }
+  }
 }
-

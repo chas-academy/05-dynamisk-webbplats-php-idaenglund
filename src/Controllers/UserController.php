@@ -5,60 +5,35 @@ namespace Blogg\Controllers;
 use Blogg\Exceptions\DbException;
 use Blogg\Exceptions\NotFoundException;
 use Blogg\Models\PostModel;
-
-use PDO;
+use Blogg\Models\UserModel;
 
 class UserController extends AbstractController
 {
 
     public function login(): string
     {   
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
-            $username = $_POST['username'];
-            $password = $_POST['password'];
+        if ($this->request->isPost()) {
+            $username = $this->request->getParams()->get('username');
+            $password = $this->request->getParams()->get('password');
         
-            $dbHandler = new PDO('mysql:host=localhost;dbname=blogg', 'root', 'root');
-        
-            $statement = $dbHandler->prepare(
-                'SELECT * FROM users 
-                WHERE username = :username 
-                AND password = :password'
-            );
-            $statement->bindValue(':username', $username, PDO::PARAM_STR);
-            $statement->bindValue(':password', $password, PDO::PARAM_STR);
-        
-            $statement->execute();
-            $result = $statement->fetchAll();
+            $userModel = new UserModel();
+            $user = $userModel->login($username, $password);
 
-            if (!empty($result)) {
-                $postModel = new PostModel();
-                $posts = $postModel->getAll();
+            if (!empty($user)) {
+                setcookie('user', $user->getId());
 
-                $properties = [
-                    'posts' => $posts,
-                    'username' => $result[0]['username']
-                ];
-
-                setcookie('username', $properties['username']);
-
-                return $this->render('views/writepost.php', $properties);
+                return $this->redirect('/post/create');
             }
         }
 
-        return $this->redirect('/posts');
-        
-        
+        return $this->redirect('/');
     }
 
     public function logout()
     {
-        $userName = $_COOKIE['username'];
+        setcookie('user', '', time()-5000);
 
-        setcookie('username', $userName, 1);
-
-        return header('Location: /');
+        return $this->redirect('/');
     }
 
 }

@@ -1,7 +1,7 @@
 <?php
-   namespace Blogg\Core;
+    namespace Blogg\Core;
 
-   use Blogg\Core\Request; 
+    use Blogg\Core\Request; 
 
     use Blogg\Controllers\ErrorController;
 
@@ -57,9 +57,19 @@
             Request $request
         ): string {
             $controllerName = '\Blogg\Controllers\\' . $info['controller'] . 'Controller';
-            // Blogg\Controllers\PostController
             $controller = new $controllerName($request);
 
+            if (isset($info['login']) && $info['login']) {
+                $cookieHasUser = $request->getCookies()->has('user');
+                if ($cookieHasUser) {
+                    $userId = $request->getCookies()->get('user'); 
+                    $controller->setUserId($userId);
+                } else {
+                    $errorController = new ErrorController($request);
+                    return $errorController->requiresLogin();
+                }
+            }
+    
             $params = $this->extractParams($route, $path);
             return call_user_func_array([$controller, $info['method']], $params);
         }

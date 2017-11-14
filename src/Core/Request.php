@@ -25,7 +25,6 @@
         }
 
         public function getUrl(): string
-        
         {
             return $this->domain . $this->path;
         }
