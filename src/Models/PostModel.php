@@ -25,15 +25,11 @@ class PostModel extends AbstractModel
         return $posts[0];
     }
 
-    public function getAll(int $page, int $pageLength): array
+    public function getAll(): array
     {
-        $start = $pageLength * ($page - 1);
-
-        $query = 'SELECT * FROM posts LIMIT :page, :length';
+        $query = 'SELECT * FROM posts';
 
         $sth = $this->db->prepare($query);
-        $sth->bindParam('page', $start, PDO::PARAM_INT);
-        $sth->bindParam('length', $pageLength, PDO::PARAM_INT);
         $sth->execute();
 
         return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
@@ -63,5 +59,13 @@ SQL;
 
         $statement->execute();
 
+    }
+
+    public function delete(int $postId) {
+        $sql ='DELETE FROM posts WHERE id = :id';
+        $sth = $this->db->prepare($sql);
+        
+        
+        return $sth->execute(['id' => $postId]);
     }
 }

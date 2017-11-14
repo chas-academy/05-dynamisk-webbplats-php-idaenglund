@@ -8,11 +8,8 @@ class DefaultController extends AbstractController
 {
     public function start(): string
     {
-        $properties = [
-            'title' => 'This is the title of the blog',
-            'posts' => ''
-        ];
 
-        return $this->render('views/layout.php', $properties);
+
+        return $this->render('views/layout.php', []);
     }
 }

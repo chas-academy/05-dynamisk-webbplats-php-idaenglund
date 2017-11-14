@@ -33,7 +33,11 @@ class UserController extends AbstractController
             $result = $statement->fetchAll();
 
             if (!empty($result)) {
+                $postModel = new PostModel();
+                $posts = $postModel->getAll();
+
                 $properties = [
+                    'posts' => $posts,
                     'username' => $result[0]['username']
                 ];
 
@@ -43,7 +47,7 @@ class UserController extends AbstractController
             }
         }
 
-        return $this->render('views/layout.php', []);
+        return $this->redirect('/posts');
         
         
     }

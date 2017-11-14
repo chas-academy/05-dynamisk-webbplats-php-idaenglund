@@ -1,4 +1,4 @@
 <?php
     echo '<pre>';
-        print_r($params);
+        print_r($errorMessage);
     echo '</pre>';

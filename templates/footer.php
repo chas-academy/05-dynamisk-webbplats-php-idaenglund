@@ -1,5 +1,2 @@
 
-
-
-
-<footer class="footer footer1">@idaenglund Chas Academy </footer>
+<footer class="footer">@idaenglund Chas Academy </footer>

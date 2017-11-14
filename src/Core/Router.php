@@ -3,6 +3,8 @@
 
    use Blogg\Core\Request; 
 
+    use Blogg\Controllers\ErrorController;
+
     class Router
     {
         private $routeMap;
@@ -33,7 +35,8 @@
                     );
                 }
             }
-            return 'ERROR: Path not found';
+            $errorController = new ErrorController($request);
+            return $errorController->notFound();
         }
 
         private function getRegexRoute(string $route, array $info): string

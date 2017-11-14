@@ -38,17 +38,26 @@
 	
 	"logout": {
     	"controller": "User",
-    	"method": "logout"
+		"method": "logout",
+		"login": true
 	},
 
 	"posttext": {
 		"controller": "Post",
-		"method": "createPost"
+		"method": "createPost",
+		"login": true
 	},
 
-	"writepost": {
+	"deletePost": {
 		"controller": "Post",
-		"method": "writePost"
+		"method": "deletePost",
+		"login": true
+	},
+
+	"editText": {
+		"controller": "Post",
+		"method": "editText",
+		"login": true
 	}
 }
 

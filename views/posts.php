@@ -51,13 +51,20 @@
 
 
     </header>
-
-    <section>
-        <h2 class="h2"><?php  print_r($this->request->getPath());?></h2>
-        <p class="post"><?php  var_dump($posts); ?></p>
-    </section>
-
-</body>
-
+    <?php foreach ($posts as $post): ?>
+    <div class="card">
+       <div class="list-unstyled">
+          <div class="card-text">
+             <div class="card-text"><strong>Title</strong>: <?php echo $post->getTitle() ?></div>
+             <div class="card-text"><strong>Date</strong>: <?php echo $post->getPostDate() ?></div>
+             <div class="card-text"><strong>Text</strong>: <?php echo $post->getContent() ?></div>
+          </div>
+       </div>
+       <?php endforeach?>
+       <footer class="footer1">@idaenglund Chas Academy </footer>
+    </div>
+  </div>
+ </body>
 </html>
    
+

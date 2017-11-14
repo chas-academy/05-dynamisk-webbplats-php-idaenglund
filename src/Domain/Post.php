@@ -14,9 +14,9 @@ class Post
         return $this->id;
     }
 
-    public function getPostDate(): datetime
+    public function getPostDate(): string 
     {
-        return $this->datetime;
+        return $this->postdate;
     }
 
     public function getTitle(): string  

@@ -53,10 +53,18 @@ class PostController extends AbstractController
 
         $post = $postModel->create($title, $content);
 
-        return $this->redirect('/');
+        return $this->redirect('/login');
     }
 
-    public function writePost() {
-        return $this->render('views/writepost.php', []);
+ 
+
+    public function deletePost() {
+        $postId = $_POST['postId'];
+
+        $postModel = new PostModel();
+
+        $postModel->delete($postId);
+            
+        return $this->redirect('/login');
     }
 }

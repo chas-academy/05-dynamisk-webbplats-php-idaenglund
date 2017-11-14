@@ -25,8 +25,13 @@ abstract class AbstractController
         return $renderedView;
     }
 
-    protected function redirect(string $url)
+    protected function redirect(string $url, array $params = null)
     {
+        if (isset($params)) {
+            $queryParams = http_build_query($params);
+            $url = $url . '?' -$queryParams; 
+        }
+
         header('Location: ' . $url); 
     }
 }
