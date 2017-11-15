@@ -47,8 +47,16 @@ class PostController extends AbstractController
     }
 
     public function createPost() {
-        $userModel = new UserModel();
         $postModel = new PostModel();
+
+        if ($this->request->isPost()) {
+            $title = $this->request->getParams()->get('title');
+            $content = $this->request->getParams()->get('content');
+
+            $postModel->create($title, $content);
+        }
+
+        $userModel = new UserModel();
         $user = $userModel->readUser($this->userId);
         $posts = $postModel->getAll();
 
@@ -77,12 +85,15 @@ class PostController extends AbstractController
        
    }
 
-    public function deletePost(int $postId) {
-        $postId = $_POST['postId'];
+    public function deletePost(int $postId): string {
 
         $postModel = new PostModel();
 
-        $postModel->delete($postId);
+        $post = $postModel->delete($postId);
+
+        $properties = [
+            'post' => $post
+        ];
             
         return $this->redirect('/');
     }

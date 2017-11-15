@@ -60,7 +60,6 @@ SQL;
         $statement->bindValue(':content', $content); 
 
         $statement->execute();
-
     }
 
     public function delete(int $postId) 

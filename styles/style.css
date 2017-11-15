@@ -299,7 +299,11 @@ body {
 
 .card {
 text-align: center; 
+}
 
+.post-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .card-text {

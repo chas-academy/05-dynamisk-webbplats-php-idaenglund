@@ -20,6 +20,7 @@
     </div>
     </form>
 </div>
+<div class="post-wrapper">
 <?php foreach ($posts as $post): ?>
 <div class="card">
     <div class="list-unstyled">
@@ -32,6 +33,7 @@
         <a href="/post/<?php echo $post->getId(); ?>/delete">Delete</a>
     </div>
     </div>
-    <?php endforeach?>
+</div>
+<?php endforeach?>
 </div>
 </div>
