@@ -36,28 +36,31 @@ class PostModel extends AbstractModel
         return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
     }
 
-    public function search(string $title): array
+    public function search(int $tag_id): array
     {
         $query = <<<SQL
-        SELECT * FROM posts
-        WHERE title LIKE :searchstring OR content LIKE :searchstring 
+        SELECT * FROM posts LEFT JOIN tags On tag_id=tags_id
+        WHERE $tags_id LIKE :searchstring 
 SQL;
         $sth = $this->db->prepare($query);
         $sth->bindValue('title', "%$title%");
         $sth->bindValue('content', "%$content%");
+        $sth->bindValue('tag_id', "%$tag_id");
         $sth->execute();
 
         return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
     }
 
-    public function create(string $title, string $content) 
+    public function create(string $title, string $content, int $categorie_id) 
     {
-        $sql = 'INSERT INTO posts (title, postdate, content) VALUES (:title, NOW(), :content)';
+        $sql = 'INSERT INTO posts (title, postdate, content, categorie_id, tag_id) VALUES (:title, NOW(), :content, :categorie_id, :tag_id)';
 
         $statement = $this->db->prepare($sql);
 
         $statement->bindValue(':title', $title);
         $statement->bindValue(':content', $content); 
+        $statement->bindValue(':categorie_id', $categorie_id);
+        $statement->bindValue(':tag_id', $tag_id); 
 
         $statement->execute();
     }
@@ -81,16 +84,28 @@ SQL;
         return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME)[0];
     }
 
-    public function update(int $postId, string $title, string $content) 
+    public function update(int $postId, string $title, string $content, int $categorie_id) 
     {
-        $sql = 'UPDATE posts SET title = :title, content = :content, postdate = NOW() WHERE id = :id'; 
+        $sql = 'UPDATE posts SET title = :title, content = :content, postdate = NOW(), categorie_id = :categorie_id WHERE id = :id'; 
         
         $sth = $this->db->prepare($sql);
 
         $sth->bindValue(':title', $title);
         $sth->bindValue(':content', $content);
         $sth->bindValue(':id', $postId);
+        $sth->bindValue(':categorie_id', $categorie_id);
+        $sth->bindValue(':tag_id', $tag_id); 
 
         return $sth->execute();
     }
+
+    public function searchCategorie(int $categorie_id)
+    {
+        $sql = 'SELECT * FROM posts LEFT JOIN categories ON categorie_id=categorie.Id WHERE categorie_id = :categorie_id'; 
+
+        $sth = $this->db->prepare($sql);
+
+        return $posts[0];
+    }
 }
+

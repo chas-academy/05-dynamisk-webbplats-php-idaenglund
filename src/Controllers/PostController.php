@@ -42,7 +42,9 @@ class PostController extends AbstractController
             return $this->render('views/error.php', $properties);
         }
 
-        $properties = ['post' => $post];
+        $properties = [
+            'post' => $post
+        ];
         return $this->render('views/post.php', $properties);
     }
 
@@ -52,8 +54,10 @@ class PostController extends AbstractController
         if ($this->request->isPost()) {
             $title = $this->request->getParams()->get('title');
             $content = $this->request->getParams()->get('content');
+            $categorie_id = $this->request->getParams()->get('categorie_id');
+            $tag_id = $this->request->getParams()->get('tag_id'); 
 
-            $postModel->create($title, $content);
+            $postModel->create($title, $content, $categorie_id, $tag_id);
         }
 
         $userModel = new UserModel();
@@ -72,10 +76,11 @@ class PostController extends AbstractController
     {
         $title = $this->request->getParams()->get('title');
         $content = $this->request->getParams()->get('content');
+        $categorie_id =$this->request->getParams()->get('categorie_id');
 
         $postModel = new PostModel();
    
-        $isUpdated = $postModel->update($postId, $title, $content);
+        $isUpdated = $postModel->update($postId, $title, $content, $categorie_id);
 
         if ($isUpdated) {
             return $this->redirect('/');
@@ -94,7 +99,6 @@ class PostController extends AbstractController
         $properties = [
             'post' => $post
         ];
-            
         return $this->redirect('/');
     }
 
@@ -107,7 +111,21 @@ class PostController extends AbstractController
         $properties = [
             'post' => $post
         ];
-
         return $this->render('views/edittext.php', $properties);
     }
+
+    public function searchCategories(int $categorie_id): int
+    {
+        $postModel = new PostModel();
+
+        $post = $postModel ->search($categorie_id);
+
+        $properties = [
+            'post' => $post,
+            'categorie_id' => $categorie_id
+        ];
+
+        return $this->render('views/categories.php', $properties);
+    }
+
 }

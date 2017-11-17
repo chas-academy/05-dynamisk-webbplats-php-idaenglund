@@ -15,4 +15,5 @@ class ErrorController extends AbstractController
         $properties = ['errorMessage' => 'You must be logged in to do that!'];
         return $this->render('views/error.php', $properties);
     }
+
 }

@@ -12,10 +12,20 @@
     </div>
     <?php endif; ?>
     <form class="form1" method="POST" action="/post/create">
+    
     <div class="writepost">Title
         <input type="text" name="title" style="width:700px;height:30px;"><br>
+        <select>
+            <option value="" selected="selected">Please select a categorie</option>
+            <option value="">Animal</option>
+            <option value="">Animal activists</option>
+            <option value="">Animal organisations</option>
+            <option value="">Animal sancturaries</option>
+        </select>
         <span class="text">Blogtext</span>
         <textarea class="textarea" name="content" style="width:700px;height:400px;"></textarea>
+        <span>Optional choose tagname</span>
+        <input type="text" name="title" style="width:700px;height:30px;"><br>
         <button class="submit" type="submit" style="width:100px;height;100px;">Post</button>
     </div>
     </form>
@@ -29,8 +39,8 @@
         <div class="card-text"><strong>Date</strong>: <?php echo $post->getPostDate() ?></div>
         <div class="card-text"><strong>Text</strong>: <?php echo $post->getContent() ?></div>
 
-        <a href="/post/<?php echo $post->getId(); ?>/edit">Edit</a>
-        <a href="/post/<?php echo $post->getId(); ?>/delete">Delete</a>
+        <a class="edit-link" href="/post/<?php echo $post->getId(); ?>/edit">Edit</a>
+        <a class="delete-link" href="/post/<?php echo $post->getId(); ?>/delete">Delete</a>
     </div>
     </div>
 </div>

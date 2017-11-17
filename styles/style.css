@@ -97,6 +97,16 @@ h2 {
     margin-left: 2%; 
 }
 
+.signin-button {
+    background: #B9DFFF;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+
+}
+
 .submit-button {
     float: left;
     background: #B9DFFF;
@@ -116,6 +126,42 @@ h2 {
     box-shadow: 5px 5px 5px #eee;
     text-shadow:none;
 
+}
+
+.delete-link {
+    background: #B9DFFF;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+}
+
+.edit-link {
+    background: #B9DFFF;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+}
+
+.delete-link:hover {
+    background: rgb(17, 72, 114);
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;    
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+}
+
+.edit-link:hover {
+    background: rgb(17, 72, 114);
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;    
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
 }
 
 .delete-button {
@@ -159,6 +205,36 @@ h2 {
     color: #fff;
     border: 1px solid #eee;
     border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+    float: right; 
+}
+
+
+.logout:hover {
+    background: rgb(17, 72, 114);
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;    
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+}
+
+.newpost {
+    background: #B9DFFF;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+    float: right; 
+}
+
+.newpost:hover {
+    background: rgb(17, 72, 114);
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;    
     box-shadow: 5px 5px 5px #eee;
     text-shadow:none;
 }

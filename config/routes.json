@@ -62,5 +62,15 @@
     "params": {
       "id": "number"
     }
+  },
+
+  "post/categorie": {
+    "controller": "Post",
+    "method": "searchCategorie"
+  },
+
+  "post/tag": {
+    "controller": "Post",
+    "method": "search"
   }
 }

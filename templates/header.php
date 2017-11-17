@@ -19,35 +19,28 @@
             <ul>
                 <li>
                     <a href="#">CATEGORIES</a>
-                    <ul>
+                    <ul>    
                         <li>
-                            <a href="#">Category 1</a>
+                            <a href="/post/categorie">Animals</a>
                         </li>
                         <li>
-                            <a href="#">Category 2</a>
+                            <a href="/post/categorie">Animal activits</a>
                         </li>
                         <li>
-                            <a href="#">Category 3</a>
+                            <a href="/post/categorie">Animal organisations</a>
                         </li>
                         <li>
-                            <a href="#"></a>
+                            <a href="/post/categorie">Animal sanctuaries</a>
                     </ul>
                 </li>
-                <li>
-                    <a href="#">
-                        ARCHIVES
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="#">2018</a>
-                        </li>
-                        <li>
-                            <a href="#">2017</a>
-                        </li>
-                    </ul>
-                </li>
-            <ul>
-        </nav>
+            </ul>
+        <form class="form" method="POST" action="/search">
+            <div class="inlog">Search for tags
+                <input type="text" name="tags">
+                <span class="hide"></span>
+            </div>
+        </form>
+            
         <?php if(!isset($_COOKIE['user'])): ?>
         <form class="form" method="POST" action="/login">
             <div class="inlog">Username
@@ -57,12 +50,16 @@
                 </span>
                 <span class="password">Password</span>
                 <input type="password" name="password">
-                <button type="submit">Sign in</button>
+                <button class="signin-button"type="submit">Sign in</button>
             </div>
         </form>
         <?php else: ?>
-        <a class="logout" href="/logout">Logga ut</a>
+        <a class="logout" href="/logout">Log out</a>
         <?php endif;?>
+
+    <?php if(isset($_COOKIE['user'])): ?>
+         <a class="newpost" href="/post/create">New post</a>
+    <?php endif; ?>
         <p class="quote">“The question is not, can they reason?,
             <br> nor can they talk?
             <br>but, can they suffer?”
