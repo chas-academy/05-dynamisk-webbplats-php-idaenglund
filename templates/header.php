@@ -34,7 +34,7 @@
                     </ul>
                 </li>
             </ul>
-        <form class="form" method="POST" action="/search">
+        <form class="form" method="POST" action="/post/tag">
             <div class="inlog">Search for tags
                 <input type="text" name="tags">
                 <span class="hide"></span>

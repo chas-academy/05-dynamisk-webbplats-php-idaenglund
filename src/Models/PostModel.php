@@ -51,7 +51,7 @@ SQL;
         return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
     }
 
-    public function create(string $title, string $content, int $categorie_id) 
+    public function create(string $title, string $content, int $categorie_id, int $tag_id ) 
     {
         $sql = 'INSERT INTO posts (title, postdate, content, categorie_id, tag_id) VALUES (:title, NOW(), :content, :categorie_id, :tag_id)';
 
