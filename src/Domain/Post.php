@@ -6,8 +6,10 @@ class Post
 {
     private $id;
     private $title;
+    private $categorie_id; 
     private $postdate;
     private $content;
+
 
     public function getId(): int
     {
@@ -27,6 +29,16 @@ class Post
     public function getContent(): string 
     {
         return $this->content;
+    }
+
+    public function getCategorieId(): int
+    {
+        return $this->categorie_id; 
+    }
+
+    public function getTagId(): int
+    {
+        return $this->tag_id; 
     }
 
 }
