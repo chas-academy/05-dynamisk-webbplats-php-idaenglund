@@ -14,29 +14,30 @@
 <body>
     <header class="header">
         <i class="fa fa-twitter" aria-hidden="true"></i>
-        <h1>My Blog</h1>
+        <h1><a href="/" style="text-decoration: none; color: #333;" title"My Blog">My Blog</a></h1>
         <nav id="primary_nav_wrap">
             <ul>
                 <li>
                     <a href="#">CATEGORIES</a>
                     <ul>    
                         <li>
-                            <a href="/post/categorie">Animals</a>
+                            <a href="/post/categorie/3">Animals</a>
                         </li>
                         <li>
-                            <a href="/post/categorie">Animal activits</a>
+                            <a href="/post/categorie/4">Animal activits</a>
                         </li>
                         <li>
-                            <a href="/post/categorie">Animal organisations</a>
+                            <a href="/post/categorie/5">Animal organisations</a>
                         </li>
                         <li>
-                            <a href="/post/categorie">Animal sanctuaries</a>
+                            <a href="/post/categorie/6">Animal sanctuaries</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
-        <form class="form" method="POST" action="/post/tag">
-            <div class="inlog">Search for tags
-                <input type="text" name="tags">
+        <form class="form" method="POST" action="/post/search">
+            <div class="inlog">Search
+                <input type="text" name="query">
                 <span class="hide"></span>
             </div>
         </form>

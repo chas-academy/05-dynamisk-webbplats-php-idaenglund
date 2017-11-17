@@ -6,7 +6,8 @@ class Post
 {
     private $id;
     private $title;
-    private $categorie_id; 
+    private $categorie_id;
+    private $name;  
     private $postdate;
     private $content;
 
@@ -34,6 +35,11 @@ class Post
     public function getCategorieId(): int
     {
         return $this->categorie_id; 
+    }
+
+    public function getCategorieName(): string
+    {
+        return $this->name; 
     }
 
     public function getTagId(): int

@@ -36,22 +36,22 @@ class PostModel extends AbstractModel
         return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
     }
 
-    public function search(int $tag_id): array
+    public function search(string $searchQuery): array
     {
-        $query = <<<SQL
-        SELECT * FROM posts LEFT JOIN tags On tag_id=tags_id
-        WHERE $tags_id LIKE :searchstring 
-SQL;
+        $query = 'SELECT * FROM posts 
+        WHERE 
+        title LIKE :searchQuery 
+        OR 
+        content LIKE :searchQuery';
+
         $sth = $this->db->prepare($query);
-        $sth->bindValue('title', "%$title%");
-        $sth->bindValue('content', "%$content%");
-        $sth->bindValue('tag_id', "%$tag_id");
+        $sth->bindValue(':searchQuery', "%$searchQuery%");
         $sth->execute();
 
         return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
     }
 
-    public function create(string $title, string $content, int $categorie_id, int $tag_id ) 
+    public function create(string $title, string $content, int $categorie_id, int $tag_id = null) 
     {
         $sql = 'INSERT INTO posts (title, postdate, content, categorie_id, tag_id) VALUES (:title, NOW(), :content, :categorie_id, :tag_id)';
 
@@ -99,13 +99,21 @@ SQL;
         return $sth->execute();
     }
 
-    public function searchCategorie(int $categorie_id)
+    public function searchCategory(int $categorie_id)
     {
-        $sql = 'SELECT * FROM posts LEFT JOIN categories ON categorie_id=categorie.Id WHERE categorie_id = :categorie_id'; 
+        $sql = 'SELECT p.id, p.title, p.postdate, p.content, p.categorie_id, p.tag_id, c.name, c.id
+        FROM posts p
+        RIGHT JOIN categories c ON p.categorie_id = c.id
+        WHERE categorie_id = :category_id'; 
 
         $sth = $this->db->prepare($sql);
+        $sth->bindValue(':category_id', $categorie_id);
 
-        return $posts[0];
+        $sth->execute();
+
+        $posts = $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
+
+        return $posts;
     }
 }
 

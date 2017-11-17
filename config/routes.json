@@ -64,12 +64,15 @@
     }
   },
 
-  "post/categorie": {
+  "post/categorie/:id": {
     "controller": "Post",
-    "method": "searchCategorie"
+    "method": "searchCategories",
+    "params": {
+      "id": "number"
+    }
   },
 
-  "post/tag": {
+  "post/search": {
     "controller": "Post",
     "method": "search"
   }

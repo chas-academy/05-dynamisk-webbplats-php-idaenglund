@@ -52,6 +52,7 @@ class PostController extends AbstractController
         $postModel = new PostModel();
 
         if ($this->request->isPost()) {
+
             $title = $this->request->getParams()->get('title');
             $content = $this->request->getParams()->get('content');
             $categorie_id = $this->request->getParams()->get('categorie_id');
@@ -114,14 +115,34 @@ class PostController extends AbstractController
         return $this->render('views/edittext.php', $properties);
     }
 
-    public function searchCategories(int $categorie_id): int
+    public function search(): string 
     {
+
+        if ($this->request->isPost()) {
+            $postModel = new PostModel();
+
+            $query = $this->request->getParams()->get('query');
+    
+            $posts = $postModel->search($query);
+    
+            $properties = [
+                'posts' => $posts
+            ];
+    
+            return $this->render('views/posts.php', $properties);
+        }
+
+    }
+
+    public function searchCategories(int $categorie_id): string
+    {
+
         $postModel = new PostModel();
 
-        $post = $postModel ->search($categorie_id);
+        $posts = $postModel->searchCategory($categorie_id);
 
         $properties = [
-            'post' => $post,
+            'posts' => $posts,
             'categorie_id' => $categorie_id
         ];
 

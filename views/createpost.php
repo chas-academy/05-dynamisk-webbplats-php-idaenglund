@@ -13,19 +13,25 @@
     <?php endif; ?>
     <form class="form1" method="POST" action="/post/create">
     
-    <div class="writepost">Title
-        <input type="text" name="title" style="width:700px;height:30px;"><br>
-        <select>
+    <div class="writepost">
+    Title
+      
+        <input type="text" name="title" value="" style="width:700px;height:30px;" /><br>
+
+        <select name="categorie_id">
             <option value="" selected="selected">Please select a categorie</option>
-            <option value="">Animal</option>
-            <option value="">Animal activists</option>
-            <option value="">Animal organisations</option>
-            <option value="">Animal sancturaries</option>
+            <option value="3">Animal</option>
+            <option value="4">Animal activists</option>
+            <option value="5">Animal organisations</option>
+            <option value="6">Animal sancturaries</option>
         </select>
+
         <span class="text">Blogtext</span>
+
         <textarea class="textarea" name="content" style="width:700px;height:400px;"></textarea>
+
         <span>Optional choose tagname</span>
-        <input type="text" name="title" style="width:700px;height:30px;"><br>
+        <input type="text" name="tags" style="width:700px;height:30px;"><br>
         <button class="submit" type="submit" style="width:100px;height;100px;">Post</button>
     </div>
     </form>
