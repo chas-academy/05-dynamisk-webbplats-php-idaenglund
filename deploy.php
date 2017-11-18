@@ -13,7 +13,9 @@ set('repository', 'git@github.com:chas-academy/05-dynamisk-webbplats-php-idaengl
 set('git_tty', true); 
 
 // Shared files/dirs between deploys 
-set('shared_files', []);
+set('shared_files', [
+    'config/app.json'
+]);
 set('shared_dirs', []);
 
 // Writable dirs by web server 
@@ -31,6 +33,11 @@ host('ssh.binero.se')
 // Tasks
 
 desc('Deploy your project');
+
+task('deploy:custom_webroot', function() {
+ run("cd {{deploy_path}} && ln -sfn {{realese_path}} public_html/05-dynamisk-webbplats");
+});
+
 task('deploy', [
     'deploy:info',
     'deploy:prepare',
@@ -48,3 +55,5 @@ task('deploy', [
 
 // [Optional] If deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
+
+after('deploy', 'deploy:custom_webroot'); 
