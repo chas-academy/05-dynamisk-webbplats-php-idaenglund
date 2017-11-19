@@ -1,1 +1,1 @@
-idaenglund.chas.academy/05-dynamisk-webbplats
+idaenglund.chas.academy/web

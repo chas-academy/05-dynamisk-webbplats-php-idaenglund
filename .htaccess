@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^idaenglund.chas.academy$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.idaenglund.chas.academy$
+RewriteCond %{REQUEST_URI} !web/ 
+RewriteRule ^(.*)$ /web/index.php [QSA,L]
