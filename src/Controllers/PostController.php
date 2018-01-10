@@ -52,13 +52,12 @@ class PostController extends AbstractController
         $postModel = new PostModel();
 
         if ($this->request->isPost()) {
-
             $title = $this->request->getParams()->get('title');
             $content = $this->request->getParams()->get('content');
             $categorie_id = $this->request->getParams()->get('categorie_id');
-            $tag_id = $this->request->getParams()->get('tag_id'); 
+            $tags = $this->request->getParams()->get('tags');
 
-            $postModel->create($title, $content, $categorie_id, $tag_id);
+            $postModel->create($title, $content, $categorie_id, $tags);
         }
 
         $userModel = new UserModel();
@@ -78,10 +77,11 @@ class PostController extends AbstractController
         $title = $this->request->getParams()->get('title');
         $content = $this->request->getParams()->get('content');
         $categorie_id =$this->request->getParams()->get('categorie_id');
+        $tag_id = $this->request->getParams()->get('tag_id');
 
         $postModel = new PostModel();
    
-        $isUpdated = $postModel->update($postId, $title, $content, $categorie_id);
+        $isUpdated = $postModel->update($postId, $title, $content, $categorie_id, $tag_id);
 
         if ($isUpdated) {
             return $this->redirect('/');

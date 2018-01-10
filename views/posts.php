@@ -6,7 +6,8 @@
         <div class="card-text"><strong>Title</strong>: <?php echo $post->getTitle() ?></div>
         <div class="card-text"><strong>Date</strong>: <?php echo $post->getPostDate() ?></div>
         <div class="card-text"><strong>Text</strong>: <?php echo $post->getContent() ?></div>
-        <div class="card-text"><strong>Categorie</strong>: <?php echo $post->getCategorieId() ?></div>
+        <div class="card-text"><strong>Category</strong>: <?php echo $post->getCategorieId() ?></div>
+        <div class="card-text"><strong>Tags</strong>: <?php echo $post->getTagId() ?></div>
 
 
         <a class ="edit-link" href="/post/<?php echo $post->getId(); ?>/edit" >Edit</a>

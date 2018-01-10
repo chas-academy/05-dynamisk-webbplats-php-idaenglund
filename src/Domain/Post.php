@@ -2,12 +2,13 @@
 
 namespace Blogg\Domain;
 
-class Post 
+class Post
 {
     private $id;
     private $title;
     private $categorie_id;
-    private $name;  
+    private $tag_id;
+    private $name;
     private $postdate;
     private $content;
 
@@ -17,34 +18,38 @@ class Post
         return $this->id;
     }
 
-    public function getPostDate(): string 
+    public function getPostDate(): string
     {
         return $this->postdate;
     }
 
-    public function getTitle(): string  
+    public function getTitle(): string
     {
-        return $this->title; 
+        return $this->title;
     }
 
-    public function getContent(): string 
+    public function getContent(): string
     {
         return $this->content;
     }
 
     public function getCategorieId(): int
     {
-        return $this->categorie_id; 
+        return $this->categorie_id;
     }
 
     public function getCategorieName(): string
     {
-        return $this->name; 
+        return $this->name;
     }
 
-    public function getTagId(): int
+    public function getTagId()
     {
-        return $this->tag_id; 
+        return $this->tag_id;
     }
 
+    public function getTagName(): array
+    {
+        return $this->name;
+    }
 }

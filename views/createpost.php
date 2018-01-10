@@ -19,7 +19,7 @@
         <input type="text" name="title" value="" style="width:700px;height:30px;" /><br>
 
         <select name="categorie_id">
-            <option value="" selected="selected">Please select a categorie</option>
+            <option value="" selected="selected">Please select a category</option>
             <option value="3">Animal</option>
             <option value="4">Animal activists</option>
             <option value="5">Animal organisations</option>
@@ -31,7 +31,7 @@
         <textarea class="textarea" name="content" style="width:700px;height:400px;"></textarea>
 
         <span>Optional choose tagname</span>
-        <input type="text" name="tags" style="width:700px;height:30px;"><br>
+        <input type="text" name="tags" value="tags" style="width:700px;height:30px;"><br>
         <button class="submit" type="submit" style="width:100px;height;100px;">Post</button>
     </div>
     </form>
@@ -44,6 +44,8 @@
         <div class="card-text"><strong>Title</strong>: <?php echo $post->getTitle() ?></div>
         <div class="card-text"><strong>Date</strong>: <?php echo $post->getPostDate() ?></div>
         <div class="card-text"><strong>Text</strong>: <?php echo $post->getContent() ?></div>
+        <div class="card-text"><strong>Categorie</strong>: <?php echo $post->getCategorieId() ?></div>
+        <div class="card-text"><strong>Tags</strong>: <?php echo $post->getTagId() ?></div>
 
         <a class="edit-link" href="/post/<?php echo $post->getId(); ?>/edit">Edit</a>
         <a class="delete-link" href="/post/<?php echo $post->getId(); ?>/delete">Delete</a>
