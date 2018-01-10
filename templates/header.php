@@ -1,5 +1,11 @@
 <?php
-    global $assetPath; 
+    global $assetPath;
+    
+    if ($_SERVER['SERVER_NAME'] === 'test.idaenglund.chas.academy') {
+        $assetPath = 'http://' . $_SERVER['HTTP_HOST'] . '/web';
+    } else {
+        $assetPath = 'http://' . $_SERVER['HTTP_HOST'] . '/';
+    }
 ?>
 
 <!DOCTYPE html>
@@ -14,14 +20,6 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <title> My blog </title>
 </head>
-
-<?php 
-    if ($_SERVER['SERVER_NAME'] === 'test.idaenglund.chas.academy') {
-        $assetPath = 'http://' . $_SERVER['HTTP_HOST'] . '/web';
-    } else {
-        $assetPath = 'http://' . $_SERVER['HTTP_HOST'] . '/';
-    }
-?>
 
 <body>
     <header class="header">
@@ -77,5 +75,5 @@
             <br> nor can they talk?
             <br>but, can they suffer?”
             <br> -Jeremy Buntham </p>
-        <img class="lion" src="<?php echo $assetPath . "views/images/patrick-hendry-221863.jpg" ?>" height="700px" width="100%" alt="Lion on a black back-ground">
+        <img class="lion" src="<?php echo $assetPath . "/views/images/patrick-hendry-221863.jpg" ?>" height="700px" width="100%" alt="Lion on a black back-ground">
     </header>
