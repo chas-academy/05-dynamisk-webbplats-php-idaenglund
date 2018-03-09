@@ -1,6 +1,4 @@
-idaenglund.chas.academy/web
-
-Finns även på idaenglund.chas.academy
+http://test.idaenglund.chas.academy/
 
 Inloggning:
 

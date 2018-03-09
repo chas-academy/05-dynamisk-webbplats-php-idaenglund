@@ -1,6 +1,8 @@
 <?php
+    session_start();
+
     use Blogg\Core\Router;
-    use Blogg\Core\Request; 
+    use Blogg\Core\Request;
 
     function autoloader($classname)
     {

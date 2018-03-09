@@ -1,6 +1,6 @@
 <?php
     global $assetPath;
-    
+
     if ($_SERVER['SERVER_NAME'] === 'test.idaenglund.chas.academy') {
         $assetPath = 'http://' . $_SERVER['HTTP_HOST'] . '/web';
     } else {
@@ -13,67 +13,73 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="<?php echo $assetPath . "/styles/style.css" ?>">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <title> My blog </title>
+    <link rel="stylesheet" href="<?php echo $assetPath . "styles/bootstrap.min.css " ?> ">
+    <link rel="stylesheet" type="text/css" href="<?php echo $assetPath . "styles/style.css " ?>">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+        rel="stylesheet">
+    <title>My Blog</title>
 </head>
 
 <body>
-    <header class="header">
-        <i class="fa fa-twitter" aria-hidden="true"></i>
-        <h1><a href="/" style="text-decoration: none; color: #333;" title"My Blog">My Blog</a></h1>
-        <nav id="primary_nav_wrap">
-            <ul>
-                <li>
-                    <a href="#">CATEGORIES</a>
-                    <ul>    
-                        <li>
-                            <a href="/post/categorie/3">Animals</a>
-                        </li>
-                        <li>
-                            <a href="/post/categorie/4">Animal activits</a>
-                        </li>
-                        <li>
-                            <a href="/post/categorie/5">Animal organisations</a>
-                        </li>
-                        <li>
-                            <a href="/post/categorie/6">Animal sanctuaries</a>
-                        </li>
-                    </ul>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <a class="navbar-brand" href="/">My Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Category 1</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Category 2</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Category 3</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Category 4</a>
+            </li>
+            <?php if(isset($_COOKIE['user'])): ?>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-success" href="/admin">Admin dashboard</a>
                 </li>
-            </ul>
-        <form class="form" method="POST" action="/post/search">
-            <div class="inlog">Search
-                <input type="text" name="query">
-                <span class="hide"></span>
-            </div>
-        </form>
-            
-        <?php if(!isset($_COOKIE['user'])): ?>
-        <form class="form" method="POST" action="/login">
-            <div class="inlog">Username
-                <input type="text" name="username">
-                <span class="hide">
-                    <br>
-                </span>
-                <span class="password">Password</span>
-                <input type="password" name="password">
-                <button class="signin-button"type="submit">Sign in</button>
-            </div>
-        </form>
-        <?php else: ?>
-        <a class="logout" href="/logout">Log out</a>
-        <?php endif;?>
+                <li class="nav-item">
+                    <a class="btn btn-outline-primary" href="/logout">Log out</a>
+                </li>
+            <?php else: ?>
+                <li class="nav-item">
+                    <a class="btn btn-outline-primary" href="/signin">Log in</a>
+                </li>
+            <?php endif;?>
+        </ul>
+    </div>
+</nav>
 
-    <?php if(isset($_COOKIE['user'])): ?>
-         <a class="newpost" href="/post/create">New post</a>
-    <?php endif; ?>
-        <p class="quote">“The question is not, can they reason?,
-            <br> nor can they talk?
-            <br>but, can they suffer?”
-            <br> -Jeremy Buntham </p>
-        <img class="lion" src="<?php echo $assetPath . "/views/images/patrick-hendry-221863.jpg" ?>" height="700px" width="100%" alt="Lion on a black back-ground">
-    </header>
+<!-- Masthead -->
+<header class="masthead" style="background-image: url('<?php echo $assetPath . "styles/images/patrick-hendry-221863.jpg" ?>')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>My Blog</h1>
+                    <span class="subheading">“The question is not, can they reason?, nor can they talk? but, can they suffer?” - Jeremy Buntham
+                        </p>
+                        <form class="form" method="POST" action="/post/search">
+                            <div class="form-group">
+                                <input type="text" name="query" class="form-control-lg" placeholder="Search here" />
+                                <button class="btn btn-primary btn-lg" type="submit">Search</button>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

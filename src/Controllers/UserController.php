@@ -11,18 +11,18 @@ class UserController extends AbstractController
 {
 
     public function login(): string
-    {   
+    {
         if ($this->request->isPost()) {
             $username = $this->request->getParams()->get('username');
             $password = $this->request->getParams()->get('password');
-        
+
             $userModel = new UserModel();
             $user = $userModel->login($username, $password);
 
             if (!empty($user)) {
                 setcookie('user', $user->getId());
 
-                return $this->redirect('/post/create');
+                return $this->redirect('/admin');
             }
         }
 
@@ -34,6 +34,17 @@ class UserController extends AbstractController
         setcookie('user', '', time()-5000);
 
         return $this->redirect('/');
+    }
+
+    public function signin()
+    {
+        $errorMessage = $this->request->getParams()->get('errorMessage');
+
+        $properties = [
+            'errorMessage' => $errorMessage
+        ];
+
+        return $this->render('views/signin.php', $properties);
     }
 
 }

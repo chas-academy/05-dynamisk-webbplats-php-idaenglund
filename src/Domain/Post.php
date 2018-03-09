@@ -5,16 +5,25 @@ namespace Blogg\Domain;
 class Post
 {
     private $id;
-    private $title;
-    private $categorie_id;
-    private $tag_id;
-    private $name;
+    private $author;
     private $postdate;
+    private $title;
     private $content;
+
+    private $category;
+    private $category_id;
+
+    private $tags;
+    private $tag_ids;
 
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getAuthor(): string
+    {
+        return $this->author;
     }
 
     public function getPostDate(): string
@@ -32,9 +41,9 @@ class Post
         return $this->content;
     }
 
-    public function getCategorieId(): int
+    public function getCategoryId(): int
     {
-        return $this->categorie_id;
+        return $this->category_id;
     }
 
     public function getCategory(): string
@@ -42,13 +51,13 @@ class Post
         return $this->category;
     }
 
-    public function getTagId()
-    {
-        return $this->tag_id;
-    }
-
     public function getTags(): string
     {
         return $this->tags;
+    }
+
+    public function getTagIds(): string
+    {
+        return $this->tag_ids;
     }
 }

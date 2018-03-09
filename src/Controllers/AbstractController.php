@@ -3,16 +3,19 @@
 namespace Blogg\Controllers;
 
 use Blogg\Core\Request;
+use Blogg\Utils\Flash\Flash;
 
 abstract class AbstractController
 {
     protected $request;
     protected $view;
     protected $userId;
+    protected $flash;
 
     public function __construct(Request $request)
     {
         $this->request = $request;
+        $this->flash = new Flash();
     }
 
     public function setUserId(int $userId)
@@ -36,10 +39,9 @@ abstract class AbstractController
     protected function redirect(string $url, array $params = null)
     {
         if (isset($params)) {
-            $queryParams = http_build_query($params);
-            $url = $url . '?' -$queryParams; 
+            $this->flash->message($params['errorMessage'], ['alert-danger']);
         }
 
-        header('Location: ' . $url); 
+        header('Location: ' . $url);
     }
 }
