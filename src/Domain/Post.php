@@ -12,7 +12,6 @@ class Post
     private $postdate;
     private $content;
 
-
     public function getId(): int
     {
         return $this->id;
@@ -38,9 +37,9 @@ class Post
         return $this->categorie_id;
     }
 
-    public function getCategorieName(): string
+    public function getCategory(): string
     {
-        return $this->name;
+        return $this->category;
     }
 
     public function getTagId()
@@ -48,8 +47,8 @@ class Post
         return $this->tag_id;
     }
 
-    public function getTagName(): array
+    public function getTags(): string
     {
-        return $this->name;
+        return $this->tags;
     }
 }

@@ -15,9 +15,16 @@ sudo apt-get -y install mysql-server mysql-client
 sudo service mysql start
 
 echo "--- What developer codes without errors turned on? Not you, master. ---"
- 
-sed -i "s/error_reporting = .*/error_reporting = E_ALL ^ E_DEPRECATED/"  /etc/php/7.0/fpm/php.ini
-sed -i "s/display_errors = .*/display_errors = On"  /etc/php/7.0/fpm/php.ini
+
+PHP_ERROR_REPORTING=${PHP_ERROR_REPORTING:-"E_ALL"}
+
+sudo sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php/7.0/fpm/php.ini
+sudo sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php/7.0/cli/php.ini
+sudo sed -ri "s/^error_reporting\s*=.*$//g" /etc/php/7.0/fpm/php.ini
+sudo sed -ri "s/^error_reporting\s*=.*$//g" /etc/php/7.0/cli/php.ini
+
+echo "error_reporting = $PHP_ERROR_REPORTING" >> /etc/php/7.0/fpm/php.ini
+echo "error_reporting = $PHP_ERROR_REPORTING" >> /etc/php/7.0/cli/php.ini
 
 echo "--- Installing and configuring Xdebug ---"
 sudo apt-get install -y php-xdebug

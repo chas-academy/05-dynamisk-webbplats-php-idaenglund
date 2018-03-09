@@ -63,10 +63,12 @@ class PostController extends AbstractController
         $userModel = new UserModel();
         $user = $userModel->readUser($this->userId);
         $posts = $postModel->getAll();
+        $tags = $postModel->getTags();
 
         $properties = [
             'user' => $user,
-            'posts' => $posts
+            'posts' => $posts,
+            'tags' => $tags
         ];
 
         return $this->render('views/createpost.php', $properties);
@@ -77,11 +79,11 @@ class PostController extends AbstractController
         $title = $this->request->getParams()->get('title');
         $content = $this->request->getParams()->get('content');
         $categorie_id =$this->request->getParams()->get('categorie_id');
-        $tag_id = $this->request->getParams()->get('tag_id');
+        $tags = $this->request->getParams()->get('tags');
 
         $postModel = new PostModel();
    
-        $isUpdated = $postModel->update($postId, $title, $content, $categorie_id, $tag_id);
+        $isUpdated = $postModel->update($postId, $title, $content, $categorie_id, $tags);
 
         if ($isUpdated) {
             return $this->redirect('/');
@@ -108,10 +110,15 @@ class PostController extends AbstractController
         $postModel = new PostModel(); 
         
         $post = $postModel->edit($postId);
+        $tags = $postModel->getTags();
+        $categories = $postModel->getCategories();
 
         $properties = [
-            'post' => $post
+            'post' => $post,
+            'tags' => $tags,
+            'categories' => $categories
         ];
+
         return $this->render('views/edittext.php', $properties);
     }
 
