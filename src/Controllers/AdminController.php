@@ -43,12 +43,13 @@ class AdminController extends AbstractController
             $title = $this->request->getParams()->get('title');
             $content = $this->request->getParams()->get('content');
             $category_id = $this->request->getParams()->get('category_id');
+            $author_id = $this->request->getParams()->get('author_id');
             $tags = $this->request->getParams()->get('tags');
 
             if (isset($tags)) {
-                $createdPostId = $postModel->create($title, $content, $category_id, $tags);
+                $createdPostId = $postModel->create($title, $content, $category_id, $author_id, $tags);
             } else {
-                $createdPostId = $postModel->create($title, $content, $category_id, $tags = []);
+                $createdPostId = $postModel->create($title, $content, $category_id, $author_id, $tags = []);
             }
 
             if ($createdPostId) {
@@ -156,7 +157,8 @@ class AdminController extends AbstractController
         $updatedTagId = $postModel->updateTag($tag_id, $name);
 
         if ($updatedTagId) {
-            return $this->redirect('/admin');
+            $properties = ['successMessage' => 'Tag successfully updated :)!'];
+            return $this->redirect('/admin', $properties);
         } else {
             throw new \Exception('AAAAAAAAAH!');
         }

@@ -13,13 +13,14 @@ class PostModel extends AbstractModel
 
     public function get(int $postId): Post
     {
-        $query = 'SELECT p.id, p.title, p.content, p.postdate, c.name as category, c.id as category_id,
+        $query = 'SELECT p.id, p.title, p.content, p.postdate, u.username as author, c.name as category, c.id as category_id,
         GROUP_CONCAT(IFNULL(t.name, "")) as tags,
         GROUP_CONCAT(IFNULL(c.name, "")) as categories
         FROM posts p
         LEFT JOIN post_tags pt ON p.id = pt.post_id
         LEFT JOIN tags t ON t.id = pt.tag_id
         LEFT JOIN categories c on c.id = p.category_id
+        LEFT JOIN users u on u.id = p.author_id
         WHERE p.id = :id';
 
         $sth = $this->db->prepare($query);
@@ -37,7 +38,7 @@ class PostModel extends AbstractModel
 
     public function getAll(): array
     {
-        $query = 'SELECT p.id, p.title, p.content, p.postdate, c.name as category, c.id as category_id,
+        $query = 'SELECT p.id, p.title,  SUBSTRING(p.content, 1, 100) as content, p.postdate, u.username as author, c.name as category, c.id as category_id,
         GROUP_CONCAT(IFNULL(t.name, "")) as tags,
         GROUP_CONCAT(IFNULL(t.id, "")) as tag_ids,
         GROUP_CONCAT(IFNULL(c.name, "")) as categories
@@ -45,13 +46,15 @@ class PostModel extends AbstractModel
         LEFT JOIN post_tags pt ON p.id = pt.post_id
         LEFT JOIN tags t ON t.id = pt.tag_id
         LEFT JOIN categories c on c.id = p.category_id
+        LEFT JOIN users u on u.id = p.author_id
         GROUP BY p.id
         ORDER BY postdate DESC';
 
         $sth = $this->db->prepare($query);
         $sth->execute();
-
-        return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
+        $response = $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
+        
+        return $response;
     }
 
     public function getCategories(): array
@@ -65,33 +68,39 @@ class PostModel extends AbstractModel
 
     public function search(string $searchQuery): array
     {
-        $query = 'SELECT p.*,
+        $query = 'SELECT p.id, p.title, p.content, p.postdate, u.username as author,
         GROUP_CONCAT(IFNULL(t.name, "")) as tags
         FROM posts p
         LEFT JOIN post_tags pt ON p.id = pt.post_id
         LEFT JOIN tags t ON t.id = pt.tag_id
+        LEFT JOIN users u on u.id = p.author_id
         WHERE
-        title LIKE :searchQuery
+        p.title LIKE :searchQuery
         OR
-        content LIKE :searchQuery';
+        p.content LIKE :searchQuery
+        OR
+        t.name LIKE :searchQuery
+        GROUP BY p.id';
 
 
         $sth = $this->db->prepare($query);
         $sth->bindValue(':searchQuery', "%$searchQuery%");
-        $sth->execute();
-
-        return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
+        $sth->execute();    
+        
+        return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);;
     }
 
-    public function create(string $title, string $content, int $category_id, array $tags = [])
+
+    public function create(string $title, string $content, int $category_id, int $author_id, array $tags = [])
     {
-        $sql = 'INSERT INTO posts (title, postdate, content, category_id) VALUES (:title, NOW(), :content, :category_id)';
+        $sql = 'INSERT INTO posts (title, postdate, content, category_id, author_id) VALUES (:title, NOW(), :content, :category_id, :author_id)';
 
         $statement = $this->db->prepare($sql);
 
         $statement->bindValue(':title', $title);
         $statement->bindValue(':content', $content);
         $statement->bindValue(':category_id', $category_id);
+        $statement->bindValue(':author_id', $author_id);
 
         if (!$statement->execute()) {
             throw new Exception($statement->errorInfo()[2]);
@@ -223,7 +232,7 @@ class PostModel extends AbstractModel
 
     public function searchCategory(int $category_id)
     {
-        $sql = 'SELECT p.id, p.title, p.postdate, p.content, p.category_id, c.name, c.id
+        $sql = 'SELECT p.id, p.title, p.postdate, p.content, p.category_id, c.name AS category, c.id AS category_id
         FROM posts p
         RIGHT JOIN categories c ON p.category_id = c.id
         WHERE category_id = :category_id';

@@ -2,7 +2,7 @@
         <div class="container">
 
                 <h1><?php echo $post->getTitle(); ?></h1>
-                <span class="meta">Posted by Author Name on <?php echo $post->getPostDate(); ?> in <?php echo $post->getCategory() ?></spa>
+                <span class="meta">   <a class="card-text"><?php echo $post->getAuthor() ?></a> <?php echo $post->getPostDate(); ?> in <?php echo $post->getCategory() ?></spa>
 
                 <div class="form-group">
                         <a class="btn btn-outline-primary" href="/admin/post/<?php echo $post->getId(); ?>/edit">Edit</a>

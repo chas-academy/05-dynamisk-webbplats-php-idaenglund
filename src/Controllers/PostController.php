@@ -23,6 +23,7 @@ class PostController extends AbstractController
             'currentPage' => $page,
             'lastPage' => count($posts) < self::PAGE_LENGTH
         ];
+        
         return $this->render('views/posts.php', $properties);
     }
 

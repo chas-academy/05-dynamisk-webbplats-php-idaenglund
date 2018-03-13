@@ -1,3 +1,7 @@
+<div>
+    <?php echo $this->flash->flash(); ?>
+</div>
+
 <div class="container">
   <table class="table table-striped table-bordered table-list">
     <thead>
@@ -31,7 +35,7 @@
               </a>
             </td>
             <td><?php echo $post->getId() ?></td>
-            <td><?php echo "Author Goes here" ?></td>
+            <td><?php echo $post->getAuthor() ?></td>
             <td><?php echo $post->getTitle() ?></td>
             <td><?php echo $post->getPostDate() ?></td>
             <td><?php echo substr($post->getContent(), 0, 20) ?></td>

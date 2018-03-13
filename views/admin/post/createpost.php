@@ -2,7 +2,7 @@
     <?php echo '<h1> Welcome back ' . $user->getUsername() . '</h1>'; ?>
 
     <form id="postForm" action="/admin/post/create" method="POST">
-        <input type="hidden" name="author" value="<?php echo json_decode($_COOKIE['user']) ?>">
+        <input type="hidden" name="author_id" value="<?php echo json_decode($_COOKIE['user']) ?>">
         <div class="form-group">
             <label for="title">Post title</label>
             <input id="title" placeholder="Skriv en titel" name="title" value="" type="text" class="form-control" />

@@ -35,16 +35,16 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Category 1</a>
+                <a class="nav-link" href="/post/category/3">Animals</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Category 2</a>
+                <a class="nav-link" href="/post/category/4">Animal sanctuaries</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Category 3</a>
+                <a class="nav-link" href="/post/category/5">Animal activists</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Category 4</a>
+                <a class="nav-link" href="/post/category/6">Animal welfare organisations</a>
             </li>
             <?php if(isset($_COOKIE['user'])): ?>
                 <li class="nav-item">
