@@ -38,7 +38,7 @@ class PostModel extends AbstractModel
 
     public function getAll(): array
     {
-        $query = 'SELECT p.id, p.title,  SUBSTRING(p.content, 1, 100) as content, p.postdate, u.username as author, c.name as category, c.id as category_id,
+        $query = 'SELECT p.id, p.title,  SUBSTRING(p.content, 1, 50) as content, p.postdate, u.username as author, c.name as category, c.id as category_id,
         GROUP_CONCAT(IFNULL(t.name, "")) as tags,
         GROUP_CONCAT(IFNULL(t.id, "")) as tag_ids,
         GROUP_CONCAT(IFNULL(c.name, "")) as categories
@@ -68,12 +68,13 @@ class PostModel extends AbstractModel
 
     public function search(string $searchQuery): array
     {
-        $query = 'SELECT p.id, p.title, p.content, p.postdate, u.username as author,
+        $query = 'SELECT p.id, p.title, p.content, p.postdate, c.name as category, u.username as author,
         GROUP_CONCAT(IFNULL(t.name, "")) as tags
         FROM posts p
         LEFT JOIN post_tags pt ON p.id = pt.post_id
         LEFT JOIN tags t ON t.id = pt.tag_id
         LEFT JOIN users u on u.id = p.author_id
+        LEFT JOIN categories c on c.id = p.category_id
         WHERE
         p.title LIKE :searchQuery
         OR
@@ -85,9 +86,9 @@ class PostModel extends AbstractModel
 
         $sth = $this->db->prepare($query);
         $sth->bindValue(':searchQuery', "%$searchQuery%");
-        $sth->execute();    
+        $sth->execute();
         
-        return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);;
+        return $sth->fetchAll(PDO::FETCH_CLASS, self::CLASSNAME);
     }
 
 
@@ -119,12 +120,10 @@ class PostModel extends AbstractModel
                 if (!$statement->execute()) {
                     throw new Exception($statement->errorInfo()[2]);
                 }
-
-                return $statement->execute();
             }
         }
 
-        return $lastpost;
+        return true;
     }
 
     public function delete(int $postId)
@@ -232,10 +231,16 @@ class PostModel extends AbstractModel
 
     public function searchCategory(int $category_id)
     {
-        $sql = 'SELECT p.id, p.title, p.postdate, p.content, p.category_id, c.name AS category, c.id AS category_id
+        $sql = 'SELECT p.id, p.title, p.postdate, SUBSTRING(p.content, 1, 50) as content, c.name AS category, c.id AS category_id, u.username AS author,
+        GROUP_CONCAT(IFNULL(t.name, "")) as tags,
+        GROUP_CONCAT(t.id, "") as tag_ids
         FROM posts p
         RIGHT JOIN categories c ON p.category_id = c.id
-        WHERE category_id = :category_id';
+        RIGHT JOIN users u ON p.author_id = u.id
+        RIGHT JOIN post_tags pt ON p.id = pt.post_id
+        RIGHT JOIN tags t ON t.id = pt.tag_id
+        WHERE category_id = :category_id
+        GROUP BY c.id';
 
         $sth = $this->db->prepare($sql);
         $sth->bindValue(':category_id', $category_id);

@@ -60,7 +60,12 @@ class PostController extends AbstractController
 
             $posts = $postModel->search($query);
 
+            if (!count($posts) > 0) {
+                $message = 'Could not find any results for "' . $query . '"';
+            }
+
             $properties = [
+                'message' => $message,
                 'posts' => $posts
             ];
 
@@ -71,17 +76,21 @@ class PostController extends AbstractController
 
     public function searchCategories(int $category_id): string
     {
-
         $postModel = new PostModel();
 
         $posts = $postModel->searchCategory($category_id);
 
+        if (!count($posts) > 0) {
+            $message = 'Oops. Seems like there are no posts in this category! :(';
+        }
+
         $properties = [
+            'message' => $message,
             'posts' => $posts,
             'category_id' => $category_id
         ];
 
-        return $this->render('views/categories.php', $properties);
+        return $this->render('views/posts.php', $properties);
     }
 
 }
