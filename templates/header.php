@@ -2,7 +2,7 @@
     global $assetPath;
 
     if ($_SERVER['SERVER_NAME'] === 'test.idaenglund.chas.academy') {
-        $assetPath = 'http://' . $_SERVER['HTTP_HOST'] . '/web';
+        $assetPath = 'http://' . $_SERVER['HTTP_HOST'] . '/web/';
     } else {
         $assetPath = 'http://' . $_SERVER['HTTP_HOST'] . '/';
     }
